@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>星空下的运动漫谈 – 星空体育</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f2f7fa;
+      color: #1f2e3c;
+      line-height: 1.7;
+      padding: 2rem 1.2rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* 网格卡片氛围——背景装饰 */
+    .container::before {
+      content: "";
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(0deg, rgba(46, 139, 128, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(46, 139, 128, 0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* 文章卡片主体 */
+    .blog-card {
+      background: #ffffff;
+      border-radius: 24px;
+      box-shadow: 0 8px 30px rgba(0, 40, 50, 0.06);
+      padding: 2.2rem 1.8rem;
+      margin-bottom: 2.5rem;
+      transition: box-shadow 0.2s ease;
+    }
+
+    @media (min-width: 600px) {
+      .blog-card {
+        padding: 3rem 3.2rem;
+      }
+      body {
+        padding: 3rem 2rem;
+      }
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0a2f36;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .subhead {
+      font-size: 1.05rem;
+      color: #3d6973;
+      border-left: 4px solid #2e8b80;
+      padding-left: 1rem;
+      margin: 0.8rem 0 1.8rem 0;
+      background: #ecf5f3;
+      border-radius: 0 8px 8px 0;
+      padding: 0.7rem 1rem;
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: #517a80;
+      border-bottom: 1px solid #dce7e9;
+      padding-bottom: 0.9rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .article-meta span {
+      background: #e6f0ed;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+    }
+
+    p {
+      margin-bottom: 1.25rem;
+    }
+
+    .inset-quote {
+      background: #e3f0ed;
+      border-radius: 16px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.8rem 0;
+      position: relative;
+      font-style: normal;
+      color: #124a4a;
+      border: 1px solid #b6d3cf;
+    }
+
+    .inset-quote::before {
+      content: "💬";
+      font-size: 1.2rem;
+      margin-right: 0.6rem;
+    }
+
+    .feature-highlight {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .feature-item {
+      background: #f5fbf9;
+      padding: 0.9rem 1rem;
+      border-radius: 16px;
+      border: 1px solid #d2e3e0;
+      box-shadow: 0 2px 6px rgba(0, 30, 30, 0.02);
+    }
+
+    .feature-item strong {
+      color: #1c6560;
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .feature-item span {
+      font-size: 0.9rem;
+      color: #2d5757;
+    }
+
+    @media (max-width: 480px) {
+      .feature-highlight {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+    }
+
+    .faq-snippet {
+      background: #f4f9f7;
+      border-radius: 20px;
+      padding: 1.4rem 1.6rem;
+      margin: 2rem 0 1.2rem;
+    }
+
+    .faq-snippet h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #15544b;
+      margin-bottom: 0.6rem;
+    }
+
+    .faq-snippet p {
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .faq-snippet .q {
+      font-weight: 600;
+      color: #0a3d3d;
+    }
+
+    .link-container {
+      margin-top: 2.2rem;
+      text-align: left;
+      padding-top: 0.8rem;
+      border-top: 1px solid #cbdcd9;
+    }
+
+    .link-container a {
+      color: #1a6b61;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dotted #389186;
+      transition: border 0.15s, color 0.15s;
+    }
+
+    .link-container a:hover {
+      color: #0a4b41;
+      border-bottom: 1px solid #0a4b41;
+    }
+
+    .footer-note {
+      font-size: 0.85rem;
+      color: #5d7d7a;
+      margin-top: 2rem;
+      padding: 0.5rem 0;
+      border-top: 1px solid #d5e2df;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* 访问句 */
+    .visit-hint {
+      background: #d9ece6;
+      border-radius: 40px;
+      display: inline-block;
+      padding: 0.2rem 1.5rem 0.2rem 1.2rem;
+      font-size: 0.9rem;
+      color: #14534b;
+      border: 1px solid #99c2bb;
+      margin: 1rem 0 0.5rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #d8e4e1;
+      margin: 1.8rem 0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div class="blog-card">
+    <h1>星轨与球场</h1>
+    <div class="subhead">在节奏与呼吸之间，找到属于你的运动光谱</div>
+
+    <div class="article-meta">
+      <span>🏷️ 星空体育 · 漫谈</span>
+      <span>📅 2025 · 三月</span>
+      <span>☕ 5 分钟</span>
+    </div>
+
+    <p>
+      有人说，运动是身体最诚实的语言。当星星在头顶铺开，跑道上的喘息、篮筐下的跃起、泳池里划开的水痕——所有细微的律动，其实都是人在与重力、与时间进行温柔的对话。今天我们不谈胜负，只聊聊那些和运动有关的安静片刻。
+    </p>
+
+    <p>
+      几年前我开始留意自己跑步时的呼吸节奏——三步一吸，两步一呼，配合耳机里偶尔响起的白噪音。奇怪的是，当我不再盯着配速，反而更能感受到风从肩胛滑过的触感。后来读到一篇关于“运动心流”的文章，提到专注内在知觉比外部数据更能带来持续的满足。这让我想到，也许运动从来不只是肌肉的收缩，更是意识与身体的同步校准。
+    </p>
+
+    <!-- 引用提示 -->
+    <div class="inset-quote">
+      教练常说：“别只盯着终点的线，注意你落脚时的声音。”<br>
+      有经验的跑者会告诉你，地面会通过脚掌传递情绪——而你要做的只是倾听。
+    </div>
+
+    <p>
+      在不同的运动中，这种倾听又各有特质。比如篮球，更强调瞬时的判断与空间感知；而游泳，则是一次次将呼吸融入流动的节奏。有人喜欢在傍晚打球，看光线从橙色变成靛蓝；也有人习惯清晨瑜伽，在脊柱的延展中唤醒一天。每种方式都像一种方言，诉说着身体与场地之间的默契。
+    </p>
+
+    <!-- 特点 / 场景 以网格卡片展示 -->
+    <div class="feature-highlight">
+      <div class="feature-item">
+        <strong>🌿 节奏感知</strong>
+        <span>心率与步伐不是数字，而是体内的小小节拍器。</span>
+      </div>
+      <div class="feature-item">
+        <strong>🪐 空间专注</strong>
+        <span>球场的边界、泳道的水线——有限场地中的无限探索。</span>
+      </div>
+      <div class="feature-item">
+        <strong>🌌 微汗时刻</strong>
+        <span>不追求力竭，而是享受身体微微发热的通透感。</span>
+      </div>
+      <div class="feature-item">
+        <strong>🧘 恢复哲学</strong>
+        <span>拉伸与补水，像星体运行后的归位与休整。</span>
+      </div>
+    </div>
+
+    <p>
+      正因为运动的面貌如此多元，合适的资讯与氛围才显得可贵。如果你也对这种“温和又持续”的运动态度感兴趣，不妨看看 <a href="https://match-xingkong.com">星空体育</a> 上的内容——那里有更多贴近日常节奏的分享，很少说教，更侧重体验与思考。你可以把它当作一个安静的驿站，在浏览中找到和自己合拍的运动故事。
+    </p>
+
+    <!-- FAQ 摘要 自然融合 -->
+    <div class="faq-snippet">
+      <h3>▎ 一些常见的小疑惑</h3>
+      <p><span class="q">Q：运动一定要流很多汗才有效吗？</span><br>
+      不一定。温和的拉伸、散步或平衡训练同样能激活身体，关键在于规律和专注。</p>
+      <p><span class="q">Q：如何保持长期运动的动力？</span><br>
+      选择你真正感到愉快的活动，哪怕每周只有两次，也比强迫自己每天训练更容易坚持。</p>
+      <p><span class="q">Q：运动后总是肌肉酸痛，正常吗？</span><br>
+      轻微的酸痛是适应的信号，但若持续刺痛则需降低强度。记得让身体有足够的时间修复。</p>
+    </div>
+
+    <hr>
+
+    <p>
+      最后，留一句最近很触动我的话：“运动不是惩罚身体的借口，而是庆祝身体还能动的方式。” 也许我们不需要成为运动员，只需成为自己运动的观察者。让脚步与心跳，成为夜空中最朴素的坐标。
+    </p>
+
+    <!-- 访问句（自然嵌入） -->
+    <div class="visit-hint">
+      若你也在寻找运动的另一种叙事，<a href="https://match-xingkong.com">星空体育</a> 或许能给你一点灵感。
+    </div>
+
+    <div class="footer-note">
+      —— 写于一个安静的傍晚 · 微凉，星可见 ——
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
